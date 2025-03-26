@@ -1,0 +1,68 @@
+<mvc:View xmlns:content="sap.ui.mdc.valuehelp.content" controllerName="project1.controller.SecondView"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <App id="app2">
+    <pages>
+          <Page id="page" title="Putaway">
+        <content>
+         <form:SimpleForm  id="simpleform"  
+         title="Customer information"
+          layout="ResponsiveGridLayout"
+          labelSpanL="2"
+          labelSpanM="2"
+          emptySpanL="0"
+          emptySpanM="0"
+          editable="true"
+          >
+         <form:content>
+          <!-- source Section -->
+         <core:Title id="ctitle"  text="Source"></core:Title>
+         <Label id="label1" text="Source Storage Type"></Label>
+         <Input id="address" value="" editable="false"></Input>
+
+         <Label id="label2" text="Source Bin"></Label>
+         <Input id="name"  value="" editable="false"></Input>
+
+         <Label id="label3" text="Batch"></Label>
+         <Input id="pno" value="" required="true"></Input>
+
+ <!-- Destination Section -->
+         <core:Title id="ctitle1"  text="Destination"></core:Title>
+         <Label id="label4" text="Destination Storage Type"></Label>
+         <Input id="cid"  value="" editable="false"></Input>
+
+         <Label id="label5" text="Destination Bin"></Label>
+         <HBox id="hbox">
+         <Input id="input5" value="" required="true" ></Input>
+         <Button id="but" text="Scan" type="Emphasized" press="onScanPress"/>
+         </HBox>
+         <Label id="label6" text="Target Quantity in Alternative unit of measure"></Label>
+         <HBox id="hbox2">
+         <Input id="input6" value="" required="true"></Input>
+        </HBox>
+
+         <Label id="label7" text="Exception Handling" ></Label>
+         <!-- <Input id="input7"></Input> -->
+
+         <ComboBox id="exceptionHandling" value="" >
+
+        
+   
+</ComboBox>
+ <!-- Save Button -->
+        <Button id="btnSave" text="Save" type="Accept" press="onSavePress"/>
+         
+          </form:content>
+         
+         
+         </form:SimpleForm>   
+        </content>
+             </Page>
+    </pages>
+   
+    </App>
+</mvc:View>

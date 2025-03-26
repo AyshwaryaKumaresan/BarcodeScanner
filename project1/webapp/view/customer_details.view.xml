@@ -1,0 +1,65 @@
+<mvc:View xmlns:table="sap.ui.table" 
+    controllerName="project1.controller.customer_details"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+
+    <Shell id="shell">
+        <App id="app1">
+            <pages>
+                <Page id="page1" title="Scan QR Code Integration in SAP UI5">
+                    <content>
+                        <VBox id="vbox">
+                            <Button id="button" icon="sap-icon://qr-code" text="Scan" press="onScan" />
+                            <Label id="label" text="ID" />
+                            <Input id="customerid" value="" />
+                            <Label id="labelname" text="Name" />
+                            <Input id="customername" value="" />
+                            <Button id="gdata" text="Click to Get Data" press="ongetdata" />
+                            <Button id="btn" text="NEXT" press="NEXT" />
+                        </VBox>
+
+                        <smartFilterBar:SmartFilterBar id="smartfilterbar"
+                            entitySet="ztable_akSet"
+                            persistencyKey="SmartFilter_Explored">
+                            <smartFilterBar:controlConfiguration>
+                                <smartFilterBar:ControlConfiguration id="filterbar1"
+                                    key="Zcid"
+                                    visibleInAdvancedArea="true">
+                                    <smartFilterBar:defaultFilterValues>
+                                        <smartFilterBar:SelectOption id="selectoption" low="1" />
+                                    </smartFilterBar:defaultFilterValues>
+                                </smartFilterBar:ControlConfiguration>
+                            </smartFilterBar:controlConfiguration>
+                        </smartFilterBar:SmartFilterBar>
+
+                        <smartTable:SmartTable id="smarttable"
+                            smartFilterId="smartfilterbar"
+                            initiallyVisibleFields="Zcid,Znamee,Zaddress,Zpno"
+                            entitySet="ztable_akSet"
+                            tableType="ResponsiveTable"
+                            enableExport="true"
+                            useVariantManagement="true"
+                            useTablePersonalisation="true"
+                            header="Custom Table"
+                            showRowCount="true"
+                            persistencyKey="SmartTable_Explored"
+                            enableAutoBinding="true"
+                            enableAutoColumnWidth="false"
+                            class="sapUiresponsiveContantPadding"
+                            beforeRebindTable="onBeforeRebindTable"
+                            >
+                            
+                          <Table id="tablel1"
+                                    mode="SingleSelectMaster"
+                                    selectionChange="onRowSelection">
+                                </Table>
+
+                        </smartTable:SmartTable>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

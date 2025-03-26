@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPROJECT1_AK_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ztable_ak" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zcid"/>
+                    <PropertyRef Name="Znamee"/>
+                </Key>
+                <Property Name="Zcid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="custid" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Znamee" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="name cus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zaddress" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="phone no" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toztable1_ak" Relationship="ZPROJECT1_AK_SRV.custom_table" FromRole="FromRole_custom_table" ToRole="ToRole_custom_table"/>
+            </EntityType>
+            <EntityType Name="ztable1_ak" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zcid"/>
+                </Key>
+                <Property Name="Zcid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="custid" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsports" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="sports" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZlangKnown" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="lang_known" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="custom_table" sap:content-version="1">
+                <End Type="ZPROJECT1_AK_SRV.ztable_ak" Multiplicity="1" Role="FromRole_custom_table"/>
+                <End Type="ZPROJECT1_AK_SRV.ztable1_ak" Multiplicity="*" Role="ToRole_custom_table"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_custom_table">
+                        <PropertyRef Name="Znamee"/>
+                        <PropertyRef Name="Zcid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_custom_table">
+                        <PropertyRef Name="Zcid"/>
+                        <PropertyRef Name="Zcid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPROJECT1_AK_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ztable_akSet" EntityType="ZPROJECT1_AK_SRV.ztable_ak" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ztable1_akSet" EntityType="ZPROJECT1_AK_SRV.ztable1_ak" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="custom_tableSet" Association="ZPROJECT1_AK_SRV.custom_table" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ztable_akSet" Role="FromRole_custom_table"/>
+                    <End EntitySet="ztable1_akSet" Role="ToRole_custom_table"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://vmsaps4hana.uksouth.cloudapp.azure.com:8007/sap/opu/odata/sap/ZPROJECT1_AK_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://vmsaps4hana.uksouth.cloudapp.azure.com:8007/sap/opu/odata/sap/ZPROJECT1_AK_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
