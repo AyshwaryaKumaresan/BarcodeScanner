@@ -114,8 +114,16 @@
           "target": [
             "TargetSecondView"
           ]
-        }
-      ],
+        },
+      
+      {
+        "name": "Routethirdview",
+        "pattern":"thirdview",
+        "target": [
+          "TargetThirdView"
+        ]
+      }
+    ],
       "targets": {
         "Targetcustomer_details": {
           "viewType": "XML",
@@ -130,6 +138,13 @@
           "clearControlAggregation": false,
           "viewId":"SecondView",
           "viewName": "SecondView"
+        },
+        "TargetThirdView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId":"ThirdView",
+          "viewName": "ThirdView"
         }
       }
     },

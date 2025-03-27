@@ -53,9 +53,18 @@
         
    
 </ComboBox>
- <!-- Save Button -->
+ <VBox id="h1" >
         <Button id="btnSave" text="Save" type="Accept" press="onSavePress"/>
-         
+          <Button id="qr" icon="sap-icon://generate-shortcut" text="Generate QR Code" type="Accept" press="handleGenerateQRCode"/>
+          <!-- <Button id="create" text="Create" type="Emphasized" press="oncreate"/> -->
+          <Image densityAware="false" id="imgId">
+       <layoutData>
+        <FlexItemData  id="flex" growFactor="1"/>
+       </layoutData>
+      </Image>
+      <Button id="btndelete" text="DELETE" press="onDeletePress" />
+       
+      </VBox>
           </form:content>
          
          

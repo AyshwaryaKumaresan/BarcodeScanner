@@ -8,7 +8,24 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("project1.controller.SecondView", {
-    
+        onScanPress: function (oEvent) {
+            var that = this;
+            BarcodeScanner.scan(
+                function (mResult) {
+                    if (!mResult.cancelled) {
+                        that.getView().byId("input5").setValue(mResult.text);
+                        MessageBox.show(
+                            "We got a QR code\n" +
+                            "Result: " + mResult.text + "\n" +
+                            "Format: " + mResult.format + "\n"
+                        );
+                    }
+                },
+                function (Error) {
+                    alert("Scanning failed: " + Error);
+                }
+            );
+        },
         onInit: function () {
             // Get OData model from Component
             var oModel = this.getOwnerComponent().getModel();
@@ -99,6 +116,78 @@ sap.ui.define([
                     sap.m.MessageBox.error("Error updating record: " + JSON.stringify(oError.responseText));
                 }
             });
+        },
+        handleGenerateQRCode: function () {
+            var baseURL = "https://quickchart.io/qr?text=";
+            
+            // Creating an object with entity set name
+            var dataObject = {
+                
+               ztable_akSet: {
+                  "Zcid": this.byId("cid").getValue(),
+                  "Znamee": this.byId("name").getValue(),
+                  "Zaddress": this.byId("address").getValue(),
+                  "Zpno": this.byId("pno").getValue()
+                  
+                 
+
+               }
+            };
+         
+            var allString = escape(JSON.stringify(dataObject));
+            var url = baseURL + allString;
+         
+            // You can use this URL to display or process further
+            console.log(url);
+            this.byId("imgId").setSrc(url);
+         },
+         onDeletePress: function () {
+            var oModel = this.getView().getModel(); // Get OData model
+            var oView = this.getView();
+        
+            // Get values from input fields
+            var sZcid = oView.byId("cid").getValue();
+            var sZnamee = oView.byId("name").getValue();
+            var sZaddress = oView.byId("address").getValue();
+            var sZpno = oView.byId("pno").getValue();
+        
+            // Validation: Ensure required values are present
+            if (!sZcid || !sZnamee) {
+                sap.m.MessageToast.show("Please provide ID and Name to delete a record.");
+                return;
+            }
+        
+            // Construct the OData path using the primary key fields
+            var sPath = "/ztable_akSet(Zcid='" + sZcid + "',Znamee='" + sZnamee + "')";
+        
+            // Confirmation Dialog
+            sap.m.MessageBox.confirm("Are you sure you want to delete this record?", {
+                actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+                onClose: function (sAction) {
+                    if (sAction === sap.m.MessageBox.Action.YES) {
+                        oModel.remove(sPath, {
+                            success: function () {
+                                sap.m.MessageToast.show("Record deleted successfully!");
+        
+                                // Clear the input fields after successful deletion
+                                oView.byId("cid").setValue("");
+                                oView.byId("name").setValue("");
+                                oView.byId("address").setValue("");
+                                oView.byId("pno").setValue("");
+        
+                                oModel.refresh(true);
+                            },
+                            error: function (oError) {
+                                console.error("Delete Error Details:", oError);
+                                sap.m.MessageBox.error("Error deleting record: " + JSON.stringify(oError.responseText));
+                            }
+                        });
+                    }
+                }
+            });
         }
+        
+        
+         
     });
 });

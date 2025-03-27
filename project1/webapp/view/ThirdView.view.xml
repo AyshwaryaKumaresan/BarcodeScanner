@@ -1,0 +1,63 @@
+<mvc:View xmlns:content="sap.ui.mdc.valuehelp.content" controllerName="project1.controller.ThirdView"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <App id="app3">
+    <pages>
+          <Page id="page2" title="Putaway">
+        <content>
+         <form:SimpleForm  id="simpleform1"  
+         title="Customer information"
+          layout="ResponsiveGridLayout"
+          labelSpanL="2"
+          labelSpanM="2"
+          emptySpanL="0"
+          emptySpanM="0"
+          editable="true"
+          >
+         <form:content>
+         
+         <core:Title id="c1"  text="New Record Creation"></core:Title>
+         <Label id="l1" text="custid"></Label>
+         <Input id="custid" value="" editable="true"></Input>
+
+         <Label id="l2" text="name cus"></Label>
+         <Input id="namecus"  value="" editable="true"></Input>
+
+         <Label id="l3" text="address"></Label>
+         <Input id="addr" value="" required="true"></Input>
+
+ 
+         <Label id="l4" text="phone no"></Label>
+         <Input id="phoneno"  value="" editable="true"></Input>
+
+        
+
+
+        
+   
+
+ <VBox id="h2" >
+        
+          <Button id="qr1" icon="sap-icon://generate-shortcut" text="Generate QR Code" type="Accept" press="GenerateQRCode"/>
+          <Button id="create" text="Click to Create data" type="Emphasized" press="oncreate"/>
+          <Image densityAware="false" id="imgId1">
+       <layoutData>
+        <FlexItemData  id="flex1" growFactor="1"/>
+       </layoutData>
+      </Image>
+       
+      </VBox>
+          </form:content>
+         
+         
+         </form:SimpleForm>   
+        </content>
+             </Page>
+    </pages>
+   
+    </App>
+</mvc:View>

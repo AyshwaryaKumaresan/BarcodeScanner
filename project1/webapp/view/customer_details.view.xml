@@ -17,8 +17,18 @@
                             <Label id="labelname" text="Name" />
                             <Input id="customername" value="" />
                             <Button id="gdata" text="Click to Get Data" press="ongetdata" />
-                            <Button id="btn" text="NEXT" press="NEXT" />
+                           
                         </VBox>
+    <Toolbar id="centerr">
+    <ToolbarSpacer id="center"/>
+    <Button id="btnCreate" text="CREATE" press="onCreatePress" />
+     <Button id="btn" text=" DELETE" press=" DELETE" />
+    </Toolbar>
+                        
+                        <!-- <HBox id="centerButtons">
+                        <Button id="btnCreate" text="CREATE" press="onCreatePress" />
+                        <Button id="btndelete" text="DELETE" press="onDeletePress" />
+ </HBox> -->
 
                         <smartFilterBar:SmartFilterBar id="smartfilterbar"
                             entitySet="ztable_akSet"

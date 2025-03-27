@@ -1,1 +1,9 @@
 /* Enter your custom styles here */
+#centerButtons {
+    display: flex; /* Makes buttons align in a row */
+    justify-content: center; /* Centers buttons horizontally */
+   
+    gap: 20px; /* Adds spacing between buttons */
+    margin-top: 10px; /* Adjusts spacing from above elements */
+}
+
