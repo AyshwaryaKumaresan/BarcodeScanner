@@ -17,18 +17,15 @@
                             <Label id="labelname" text="Name" />
                             <Input id="customername" value="" />
                             <Button id="gdata" text="Click to Get Data" press="ongetdata" />
-                           
                         </VBox>
-    <Toolbar id="centerr">
-    <ToolbarSpacer id="center"/>
-    <Button id="btnCreate" text="CREATE" press="onCreatePress" />
-     <Button id="btn" text=" DELETE" press=" DELETE" />
-    </Toolbar>
-                        
-                        <!-- <HBox id="centerButtons">
-                        <Button id="btnCreate" text="CREATE" press="onCreatePress" />
-                        <Button id="btndelete" text="DELETE" press="onDeletePress" />
- </HBox> -->
+
+                        <Toolbar id="centerr">
+                            <ToolbarSpacer id="center"/>
+                            <Button id="btnCreate" text="CREATE" press="onCreatePress" />
+                            <!-- CHANGE START: Updated Delete Button Press Handler -->
+                            <Button id="btnDelete" text="DELETE" press="onDeletePress" />
+                            <!-- CHANGE END -->
+                        </Toolbar>
 
                         <smartFilterBar:SmartFilterBar id="smartfilterbar"
                             entitySet="ztable_akSet"
@@ -58,13 +55,14 @@
                             enableAutoBinding="true"
                             enableAutoColumnWidth="false"
                             class="sapUiresponsiveContantPadding"
-                            beforeRebindTable="onBeforeRebindTable"
-                            >
+                            beforeRebindTable="onBeforeRebindTable">
                             
-                          <Table id="tablel1"
-                                    mode="SingleSelectMaster"
-                                    selectionChange="onRowSelection">
-                                </Table>
+                            <!-- CHANGE START: Updated Table for Multi-Selection -->
+                            <Table id="tablel1"
+                                mode="MultiSelect" 
+                                selectionChange="onRowSelection">
+                            </Table>
+                            <!-- CHANGE END -->
 
                         </smartTable:SmartTable>
                     </content>

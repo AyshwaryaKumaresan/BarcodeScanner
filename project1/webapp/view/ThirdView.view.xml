@@ -22,17 +22,18 @@
          
          <core:Title id="c1"  text="New Record Creation"></core:Title>
          <Label id="l1" text="custid"></Label>
-         <Input id="custid" value="" editable="true"></Input>
+         <Input id="custid" value=""  placeholder="Enter customer id" editable="true"></Input>
 
          <Label id="l2" text="name cus"></Label>
-         <Input id="namecus"  value="" editable="true"></Input>
+         <Input id="namecus"  value=""  placeholder="Enter customer name" editable="true"></Input>
 
          <Label id="l3" text="address"></Label>
-         <Input id="addr" value="" required="true"></Input>
+         <Input id="addr" value=""  placeholder="Enter address" required="true"></Input>
 
  
-         <Label id="l4" text="phone no"></Label>
-         <Input id="phoneno"  value="" editable="true"></Input>
+        <Label id="l4" text="Phone No"></Label>
+        <Input id="phoneno" type="Tel" placeholder="Enter phone number" maxLength="10"/>
+
 
         
 

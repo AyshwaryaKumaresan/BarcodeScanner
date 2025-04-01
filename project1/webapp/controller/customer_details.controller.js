@@ -33,9 +33,8 @@ sap.ui.define([
         },
 
         onBeforeRebindTable: function (oEvent) {
-            // Only apply filters if requested by the user
             if (!this._bApplyFilter) {
-                return; // If false, do nothing (initial load)
+                return;
             }
 
             var Zcid = this.getView().byId("customerid").getValue();
@@ -59,13 +58,45 @@ sap.ui.define([
         },
 
         ongetdata: function () {
-            // Enable filtering on table rebind
             this._bApplyFilter = true;
             this.getView().byId("smarttable").rebindTable();
         },
 
-        DELETE: function () {
-            this.getOwnerComponent().getRouter().navTo("Routesecondview");
+        // ** DELETE ROW FROM ENTITY SET**
+        onDeletePress: function () {
+            var oTable = this.getView().byId("tablel1");// Get the table control
+            var aSelectedItems = oTable.getSelectedItems();// Get selected rows
+
+            if (aSelectedItems.length === 0) {// Check if no row is selected
+                MessageToast.show("Please select at least one row to delete.");
+                return;
+            }
+
+            var oModel = this.getView().getModel();// Get the OData model
+
+            // Loop through selected rows and delete each record from OData
+            aSelectedItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext();// Get binding context of row
+                var sPath = oContext.getPath(); // Get the entity path (e.g., "/ztable_akset(1)")
+
+                // Confirmation before delete
+                MessageBox.confirm("Are you sure you want to delete the selected record?", {
+                    onClose: function (oAction) {
+                        if (oAction === MessageBox.Action.OK) {// If user confirms deletion
+                            oModel.remove(sPath, {
+                                success: function () {// Success callback
+                                    MessageToast.show("Record deleted successfully.");
+                                    oTable.removeSelections(true);// Clear row selection
+                                    oModel.refresh(true); // Refresh model to reflect changes or updates
+                                },
+                                error: function (oError) {// Error callback
+                                    MessageBox.error("Failed to delete record.");
+                                }
+                            });
+                        }
+                    }
+                });
+            });
         },
 
         onRowSelection: function (oEvent) {
